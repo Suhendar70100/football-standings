@@ -34,7 +34,7 @@
                     <div class="card">
                         <div class="card-body">
                             <button type="button" class="col-2 mb-2 btn btn-primary" data-toggle="modal"
-                                data-target="#share-project"><i class="fas fa-share-square"></i> Bagikan Proyek
+                                data-target="#addMatch">Added Match
                             </button>
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
@@ -47,7 +47,7 @@
                                     @foreach ($matches as $item)
                                         <tr>
                                             <td>{{ $item->club1->name }} <strong>({{ $item->score1 }})</strong> VS {{ $item->club2->name }} <strong>({{ $item->score2 }})</strong></td>
-                                            <td>{{ $item->match_date }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($item->match_date)->isoFormat('D MMMM YYYY') }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -69,12 +69,61 @@
         </div>
         <!-- /.container-fluid -->
     </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2>Standings</h2>
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Club</th>
+                                        <th>Played</th>
+                                        <th>Won</th>
+                                        <th>Draw</th>
+                                        <th>Lost</th>
+                                        <th>Winning Goal</th>
+                                        <th>Goal Lost</th>
+                                        <th>Point</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($standings as $key => $standing)
+                                        <tr>
+                                            <td>{{ $key + 1 }}</td>
+                                            <td>{{ $standing->club->name }}</td>
+                                            <td>{{ $standing->played }}</td>
+                                            <td>{{ $standing->won }}</td>
+                                            <td>{{ $standing->drawn }}</td>
+                                            <td>{{ $standing->lost }}</td>
+                                            <td>{{ $standing->goals_for }}</td>
+                                            <td>{{ $standing->goals_against }}</td>
+                                            <td>{{ $standing->points }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
 </div>
-<div class="modal fade" id="share-project">
+<div class="modal fade" id="addMatch">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Bagikan Proyek</h4>
+                <h4 class="modal-title">Added Match</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -115,8 +164,8 @@
                     </div>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-                    <button type="submit" id="updateBtn" name="shareProject" class="btn btn-primary">Bagikan Proyek</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                    <button type="submit" name="add" class="btn btn-primary">Submit</button>
                 </div>
             </form>                 
         </div>

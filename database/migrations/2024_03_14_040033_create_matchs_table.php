@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('club1_id')->constrained('clubs');
             $table->foreignId('club2_id')->constrained('clubs');
-            $table->unsignedInteger('score1');
-            $table->unsignedInteger('score2');
+            $table->integer('score1')->default(0);
+            $table->integer('score2')->default(0);
             $table->date('match_date');
             $table->timestamps();
         });

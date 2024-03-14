@@ -22,5 +22,10 @@ class Club extends Model
     {
         return $this->hasMany(Matchs::class, 'club2_id');
     }
+
+    public function standing()
+    {
+        return $this->hasOne(Standing::class);
+    }
     
 }
