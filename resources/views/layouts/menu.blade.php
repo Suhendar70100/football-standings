@@ -14,6 +14,13 @@
     </a>
 </li>
 <li class="nav-item">
+    <a href="{{ route('matches') }}" class="nav-link {{ Request::is('matches') ? 'active' : '' }}">
+        <p>
+            Matches
+        </p>
+    </a>
+</li>
+<li class="nav-item">
     <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
         <i class="fa-solid fa-arrow-right-from-bracket nav-icon text-danger"></i>
         <p>

@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ClubController;
+use App\Http\Controllers\MatchesController;
+use App\Http\Controllers\Auth\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard.index');
     })->name('dashboard');
+    // Clubs
     Route::get('/club', [ClubController::class, 'index'])->name('club');
     Route::post('/club', [ClubController::class, 'store'])->name('club.store');
+
+    Route::get('/matches', [MatchesController::class, 'index'])->name('matches');
+    Route::post('/matches', [MatchesController::class, 'store'])->name('matches.store');
+
 
 });
